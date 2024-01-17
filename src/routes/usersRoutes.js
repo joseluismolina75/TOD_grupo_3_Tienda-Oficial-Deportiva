@@ -1,13 +1,16 @@
 const express = require('express');
 const router=express.Router();
 
+// multer middleware
+const upload = require('../middlewares/multeruser')
+
 //REGISTER
 
-const {getRegister, register, postRegister} = require('../controllers/userController.js')
+const {getRegister, postRegister} = require('../controllers/userController.js')
 
 router.get('/register', getRegister);
 
-router.post('/register', postRegister)
+router.post('/register', upload.single('images'), postRegister)
 
 
 

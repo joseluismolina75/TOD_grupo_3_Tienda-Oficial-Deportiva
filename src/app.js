@@ -3,14 +3,13 @@ const path = require('path')
 const app = express()
 const port = 5000
 const methodOverride =  require('method-override'); // Pasar poder usar los métodos PUT y DELETE
-const cookieParser = require ('cookie-parser')
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
 
 const remembermeMiddleware = require('./middlewares/remembermeMiddleware')
 
 
 // Config static folder
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, './public')))
 app.use(methodOverride('_method'))
 let indexRoutes= require('./routes/index')
 
@@ -27,7 +26,7 @@ resave: false,
 saveUninitialized: true,
 }));
 
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({extended:true}));  //ver si se pone app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 
 //app.use(cookieParser())
