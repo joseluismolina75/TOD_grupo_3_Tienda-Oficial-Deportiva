@@ -7,7 +7,9 @@ const controller = {
   getHome: (req, res) => {
     // Lógica del controlador para la página de inicio
     //res.render('index'); // Renderiza la plantilla 'index.ejs' en la carpeta 'views'
-    res.render('index',{products})
+    const inDiscount = products.filter(product => product.discount > 0 )
+		const visited = products.filter(product => product.category === "visited" )
+    res.render('index', {inDiscount, visited})
   }
 };
 
